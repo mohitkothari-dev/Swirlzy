@@ -21,13 +21,13 @@ const TopPicks = () => {
 
   return (
     <motion.div 
-      className="mt-8 bg-white rounded-3xl p-6"
+      className="bg-white rounded-3xl p-5 md:p-6"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
       <motion.h2 
-        className="text-4xl font-bold mb-6 text-black"
+        className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-black"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
@@ -39,8 +39,8 @@ const TopPicks = () => {
         {picks.map((pick, index) => (
           <StaggerItem key={index}>
             <HoverScale>
-              <div className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors">
-                <div className="flex items-center space-x-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors">
+                <div className="flex items-center space-x-4 mb-3 sm:mb-0">
                   <motion.img 
                     src={pick.image}
                     alt={pick.name}
@@ -52,7 +52,7 @@ const TopPicks = () => {
                     <p className="text-gray-600">{pick.description}</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-between w-full sm:w-auto sm:space-x-4 pl-20 sm:pl-0">
                   <span className="font-bold text-black">{pick.price}</span>
                   <motion.button 
                     className="bg-[#2B5741] text-white p-2 rounded-full hover:bg-opacity-90"

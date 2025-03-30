@@ -42,7 +42,7 @@ function App() {
             <HeroSection />
             <TopPicks />
           </div>
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
             <SchoolCard />
             <EverydayCard />
           </div>

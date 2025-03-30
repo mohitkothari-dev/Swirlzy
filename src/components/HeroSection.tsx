@@ -4,11 +4,11 @@ import { FadeIn, SlideUp, Float, ScaleIn } from './animations/AnimatedComponents
 
 const HeroSection = () => {
   return (
-    <div className="bg-[#FFD699] rounded-3xl p-8 relative overflow-hidden">
-      <div className="relative z-10 max-w-[60%]">
+    <div className="bg-[#FFD699] rounded-3xl p-6 md:p-8 relative overflow-hidden">
+      <div className="relative z-10 w-full md:max-w-[60%]">
         <FadeIn>
           <motion.h1 
-            className="text-8xl font-bold text-white leading-none tracking-tight"
+            className="text-5xl md:text-8xl font-bold text-white leading-none tracking-tight"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
@@ -71,8 +71,27 @@ const HeroSection = () => {
         </SlideUp>
       </div>
       
+      {/* Mobile image - shown below content on small screens */}
       <motion.div 
-        className="absolute right-0 top-0 h-full w-[45%] flex items-center justify-center"
+        className="mt-8 w-full block md:hidden"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        <Float>
+          <motion.img 
+            src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&h=500&fit=crop"
+            alt="Stacked Cookies"
+            className="w-full h-48 object-cover rounded-2xl shadow-lg"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.3 }}
+          />
+        </Float>
+      </motion.div>
+      
+      {/* Desktop image - positioned absolutely on the right */}
+      <motion.div 
+        className="absolute right-0 top-0 h-full w-[45%] hidden md:flex items-center justify-center"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
