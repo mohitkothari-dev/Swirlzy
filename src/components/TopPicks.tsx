@@ -1,5 +1,7 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { StaggerContainer, StaggerItem, HoverScale } from './animations/AnimatedComponents';
 
 const TopPicks = () => {
   const picks = [
@@ -18,32 +20,54 @@ const TopPicks = () => {
   ];
 
   return (
-    <div className="mt-8 bg-white rounded-3xl p-6">
-      <h2 className="text-4xl font-bold mb-6 text-black">TOP-5 PICKS</h2>
-      <div className="space-y-4">
+    <motion.div 
+      className="mt-8 bg-white rounded-3xl p-6"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <motion.h2 
+        className="text-4xl font-bold mb-6 text-black"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        TOP-5 PICKS
+      </motion.h2>
+      
+      <StaggerContainer>
         {picks.map((pick, index) => (
-          <div key={index} className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <img 
-                src={pick.image}
-                alt={pick.name}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-              <div>
-                <h3 className="font-bold text-black">{pick.name}</h3>
-                <p className="text-gray-600">{pick.description}</p>
+          <StaggerItem key={index}>
+            <HoverScale>
+              <div className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors">
+                <div className="flex items-center space-x-4">
+                  <motion.img 
+                    src={pick.image}
+                    alt={pick.name}
+                    className="w-16 h-16 rounded-full object-cover"
+                    whileHover={{ rotate: 10 }}
+                  />
+                  <div>
+                    <h3 className="font-bold text-black">{pick.name}</h3>
+                    <p className="text-gray-600">{pick.description}</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <span className="font-bold text-black">{pick.price}</span>
+                  <motion.button 
+                    className="bg-[#2B5741] text-white p-2 rounded-full hover:bg-opacity-90"
+                    whileHover={{ scale: 1.2, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <Plus className="w-5 h-5" />
+                  </motion.button>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="font-bold text-black">{pick.price}</span>
-              <button className="bg-[#2B5741] text-white p-2 rounded-full hover:bg-opacity-90">
-                <Plus className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+            </HoverScale>
+          </StaggerItem>
         ))}
-      </div>
-    </div>
+      </StaggerContainer>
+    </motion.div>
   );
 }
 
